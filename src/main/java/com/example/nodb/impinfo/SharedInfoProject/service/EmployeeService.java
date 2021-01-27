@@ -32,7 +32,7 @@ public class EmployeeService {
         }
     }
      
-    public EmployeeEntity getEmployeeById(Long id) throws RecordNotFoundException
+    public EmployeeEntity getEmployeeById(Integer id) throws RecordNotFoundException
     {
         Optional<EmployeeEntity> employee = repository.findById(id);
          
@@ -48,7 +48,7 @@ public class EmployeeService {
         Optional<EmployeeEntity> employee = repository.findById(entity.getId());
 
         sharedObject.getEmployeeEntity().setEmail("ravivarmachaluvadi@gmail.com");
-        sharedObject.getEmployeeEntity().setId(221l);
+        sharedObject.getEmployeeEntity().setId(221);
          
         if(employee.isPresent()) 
         {
@@ -67,7 +67,7 @@ public class EmployeeService {
         }
     } 
      
-    public void deleteEmployeeById(Long id) throws RecordNotFoundException 
+    public void deleteEmployeeById(Integer id) throws RecordNotFoundException
     {
         Optional<EmployeeEntity> employee = repository.findById(id);
          

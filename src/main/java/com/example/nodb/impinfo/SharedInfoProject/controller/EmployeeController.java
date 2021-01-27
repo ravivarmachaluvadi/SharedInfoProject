@@ -1,9 +1,11 @@
 package com.example.nodb.impinfo.SharedInfoProject.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.nodb.impinfo.SharedInfoProject.entity.EmployeeEntity;
 import com.example.nodb.impinfo.SharedInfoProject.exception.RecordNotFoundException;
+import com.example.nodb.impinfo.SharedInfoProject.repository.EmployeeRepository;
 import com.example.nodb.impinfo.SharedInfoProject.service.EmployeeService;
 import com.example.nodb.impinfo.SharedInfoProject.util.SharedObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class EmployeeController
     @Autowired
     SharedObject sharedObject;
 
+    @Autowired
+    EmployeeRepository employeeRepository;
+
  
     @GetMapping
     public ResponseEntity<List<EmployeeEntity>> getAllEmployees() {
@@ -32,11 +37,19 @@ public class EmployeeController
     }
  
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable("id") Long id)
+    public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable("id") Integer id)
                                                     throws RecordNotFoundException {
         EmployeeEntity entity = service.getEmployeeById(id);
  
         return new ResponseEntity<EmployeeEntity>(entity, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping("name/{firstName}")
+    public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable("firstName") String firstName,@RequestParam("lastName") String lastName)
+            throws RecordNotFoundException {
+        Optional<EmployeeEntity> entity = employeeRepository.findByFirstNameAndLastName(firstName,lastName);
+
+        return new ResponseEntity<EmployeeEntity>(entity.get(), new HttpHeaders(), HttpStatus.OK);
     }
  
     @PostMapping
@@ -52,7 +65,7 @@ public class EmployeeController
     }
  
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployeeById(@PathVariable("id") Long id)
+    public ResponseEntity<String> deleteEmployeeById(@PathVariable("id") Integer id)
                                                     throws RecordNotFoundException {
         service.deleteEmployeeById(id);
         return new ResponseEntity<String>("The record with id "+id+" deleted successfully", new HttpHeaders(), HttpStatus.OK);

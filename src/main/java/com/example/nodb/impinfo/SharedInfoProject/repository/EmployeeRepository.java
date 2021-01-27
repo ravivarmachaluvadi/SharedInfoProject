@@ -13,9 +13,11 @@ import java.util.UUID;
 public interface EmployeeRepository 
         extends JpaRepository<EmployeeEntity, UUID> {
 
-    Optional<EmployeeEntity> findById(Long id);
+    Optional<EmployeeEntity> findById(Integer id);
 
     @Transactional
-     void deleteById(Long id);
+     void deleteById(Integer id);
+
+    Optional<EmployeeEntity> findByFirstNameAndLastName(String firstName,String lastName);
  
 }

@@ -71,6 +71,29 @@ public class PostController
 
         return new ResponseEntity<String>("This is \n customised response", new HttpHeaders(), HttpStatus.CREATED);
     }
+
+
+    @PostMapping
+    @RequestMapping("/v1")
+    public ResponseEntity<String> createOrUpdatePostV1(@RequestBody Post post)
+            throws RecordNotFoundException {
+
+        PostEntity postEntity=new PostEntity();
+        postEntity.setId(post.getId());
+        postEntity.setTitle(post.getTitle());
+
+        List<PostComment> commentList=new ArrayList<>();
+
+        for(Comment comment: post.getComments()){
+            PostComment comment1=new PostComment();
+            comment1.setId(comment.getId());
+            comment1.setReview(comment.getReview());
+            commentList.add(comment1);
+        }
+        postEntity.setComments(commentList);
+        PostEntity updated = service.createOrUpdatePost(postEntity);
+        return new ResponseEntity<String>("This is \n customised response", new HttpHeaders(), HttpStatus.CREATED);
+    }
  
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePostById(@PathVariable("id") Integer id)

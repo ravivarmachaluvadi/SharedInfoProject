@@ -1,9 +1,8 @@
 package com.example.nodb.impinfo.SharedInfoProject.controller;
 
-import com.google.gson.Gson;
+import com.example.nodb.impinfo.SharedInfoProject.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -27,7 +26,7 @@ public class RemoteController {
     private RestTemplate restTemplate;
 
     @GetMapping("/response")
-    public ResponseEntity getPayload(String tranId,String returnOrderNumber) {
+    public ResponseEntity getPayload() {
 
        ResponseEntity responseEntity= new ResponseEntity<String>("Custom Response", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -55,7 +54,7 @@ public class RemoteController {
         try {
             responseEntity= restTemplate.exchange(resolvedUrl, HttpMethod.GET, requestEntity,String.class);
         } catch (Exception e) {
-            log.error("Exception while invoking receive return endpoint for return order:GuestOrderAgg:"+returnOrderNumber+" Exception is::" +e.getMessage());
+            log.error("Exception while invoking receive return endpoint for " +e.getMessage());
         }
         return responseEntity;
     }

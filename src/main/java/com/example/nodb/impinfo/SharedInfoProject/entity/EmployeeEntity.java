@@ -31,7 +31,7 @@ public class EmployeeEntity {
     private UUID key;
 
     @Column(name="id")
-    private Long id;
+    private Integer id;
      
     @Column(name="first_name")
     private String firstName;
