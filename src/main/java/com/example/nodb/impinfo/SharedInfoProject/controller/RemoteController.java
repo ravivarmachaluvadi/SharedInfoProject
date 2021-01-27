@@ -52,7 +52,8 @@ public class RemoteController {
         HttpEntity<String> requestEntity = new HttpEntity<>("", httpHeaders);
 
         try {
-            responseEntity= restTemplate.exchange(resolvedUrl, HttpMethod.GET, requestEntity,String.class);
+            responseEntity= restTemplate.exchange(resolvedUrl, HttpMethod.GET, requestEntity,User[].class);
+            //responseEntity= restTemplate.exchange(resolvedUrl, HttpMethod.GET, requestEntity,String.class);
         } catch (Exception e) {
             log.error("Exception while invoking receive return endpoint for " +e.getMessage());
         }
