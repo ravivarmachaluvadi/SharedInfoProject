@@ -1,7 +1,6 @@
 package com.example.nodb.impinfo.SharedInfoProject.controller;
 
-import com.example.nodb.impinfo.SharedInfoProject.entity.EmployeeEntity;
-import com.example.nodb.impinfo.SharedInfoProject.pojo.User;
+import com.example.nodb.impinfo.SharedInfoProject.dto.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -27,7 +26,7 @@ public class RemoteController {
     @GetMapping("/response")
     public ResponseEntity getPayload() {
 
-       ResponseEntity responseEntity= new ResponseEntity<String>("Custom Response", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+       ResponseEntity<User[]> responseEntity= new ResponseEntity("Custom Response", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 
         // URI (URL) parameters
         Map<String, String> uriParams = new HashMap<>();
@@ -41,13 +40,12 @@ public class RemoteController {
 
         //Setting Up Headers
         HttpHeaders httpHeaders = new HttpHeaders();
+
         List<MediaType> mediaTypeList = new ArrayList<>();
+
         mediaTypeList.add(MediaType.APPLICATION_JSON);
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(mediaTypeList);
-
-        StringBuffer responsePayLoad = null;
-
         HttpEntity<String> requestEntity = new HttpEntity<>("", httpHeaders);
 
         try {

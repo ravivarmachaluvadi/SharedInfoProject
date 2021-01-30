@@ -1,4 +1,4 @@
-package com.example.nodb.impinfo.SharedInfoProject.pojo;
+package com.example.nodb.impinfo.SharedInfoProject.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

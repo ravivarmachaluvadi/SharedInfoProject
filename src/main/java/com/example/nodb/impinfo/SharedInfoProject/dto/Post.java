@@ -1,9 +1,7 @@
-package com.example.nodb.impinfo.SharedInfoProject.pojo;
+package com.example.nodb.impinfo.SharedInfoProject.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
