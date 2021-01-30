@@ -56,13 +56,13 @@ public class EmployeeController
     public ResponseEntity<String> createOrUpdateEmployee(@RequestBody EmployeeEntity employee)
                                                     throws RecordNotFoundException {
         //EmployeeEntity updated = service.createOrUpdateEmployee(employee);
-
         //ApacheCamel API vs RESTFul API (against data object sharing)
-
+/*
         sharedObject.getEmployeeEntity().setFirstName("Ravi");
-        sharedObject.getEmployeeEntity().setLastName("Varma");
-        EmployeeEntity updated = service.createOrUpdateEmployee(sharedObject.getEmployeeEntity());
+        sharedObject.getEmployeeEntity().setLastName("Varma");*/
+        //EmployeeEntity updated = service.createOrUpdateEmployee(sharedObject.getEmployeeEntity());
 
+        EmployeeEntity updated = service.createOrUpdateEmployee(employee);
         return new ResponseEntity<String>("This is \n customised response", new HttpHeaders(), HttpStatus.CREATED);
     }
  

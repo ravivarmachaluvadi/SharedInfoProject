@@ -48,4 +48,8 @@ public class EmployeeEntity {
     @UpdateTimestamp
     private Date modifiedDate;
 
+    //column can be added with default value as false where data is present in table
+    @Column(name = "is_pulished",columnDefinition = "boolean default false")
+    private Boolean isPulished=false;
+
 }

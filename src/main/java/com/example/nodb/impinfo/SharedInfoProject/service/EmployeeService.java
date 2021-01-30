@@ -47,8 +47,8 @@ public class EmployeeService {
     {
         Optional<EmployeeEntity> employee = repository.findById(entity.getId());
 
-        sharedObject.getEmployeeEntity().setEmail("ravivarmachaluvadi@gmail.com");
-        sharedObject.getEmployeeEntity().setId(221);
+        //sharedObject.getEmployeeEntity().setEmail("ravivarmachaluvadi@gmail.com");
+        //sharedObject.getEmployeeEntity().setId(221);
          
         if(employee.isPresent()) 
         {
