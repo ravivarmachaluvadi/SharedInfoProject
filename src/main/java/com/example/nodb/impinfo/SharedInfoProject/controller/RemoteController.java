@@ -1,14 +1,13 @@
 package com.example.nodb.impinfo.SharedInfoProject.controller;
 
+import com.example.nodb.impinfo.SharedInfoProject.entity.EmployeeEntity;
 import com.example.nodb.impinfo.SharedInfoProject.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -57,6 +56,15 @@ public class RemoteController {
         } catch (Exception e) {
             log.error("Exception while invoking receive return endpoint for " +e.getMessage());
         }
+        return responseEntity;
+    }
+
+
+    @PostMapping("/request")
+    public ResponseEntity postPayload(@RequestBody User[] users) {
+
+        ResponseEntity<User[]> responseEntity= new ResponseEntity<>(users, new HttpHeaders(), HttpStatus.OK);
+
         return responseEntity;
     }
 }
