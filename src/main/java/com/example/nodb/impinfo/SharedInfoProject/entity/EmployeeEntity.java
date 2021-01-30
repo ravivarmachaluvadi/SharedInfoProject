@@ -49,7 +49,7 @@ public class EmployeeEntity {
     private Date modifiedDate;
 
     //column can be added with default value as false where data is present in table
-    @Column(name = "is_pulished",columnDefinition = "boolean default false")
-    private Boolean isPulished=false;
+    @Column(name = "is_pulished",columnDefinition = "boolean default false")//this line is setting default value to the existing data
+    private Boolean isPulished=false;//this line is setting default value to the upcoming data where field ex:isPulished not initialized
 
 }
