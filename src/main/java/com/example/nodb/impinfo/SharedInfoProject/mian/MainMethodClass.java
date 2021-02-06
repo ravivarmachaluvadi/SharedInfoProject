@@ -9,6 +9,8 @@ public class MainMethodClass {
 
         Map<String, Set<String>> lineKeyStatusSetMap=new HashMap<>();
 
+        Map<String, Set<String>> filteredSortedMap=new HashMap<>();
+
         StatusDTO sstatusDTO1=new StatusDTO();
         sstatusDTO1.setQuantity(1);
         sstatusDTO1.setStatusCode("3700.01");
@@ -104,5 +106,12 @@ public class MainMethodClass {
 
         }
 
+        orderList.stream().flatMap(order -> order.getOrderLines().stream().map(orderLine -> filteredSortedMap.put(orderLine.orderLineKey,orderLine.getStatusDTOS().stream().filter(statusDTO -> statusDTO.getStatusDescription().equalsIgnoreCase("Return Initiated")).sorted().map(statusDTO -> statusDTO.getStatusDescription()).collect(Collectors.toSet())))).collect(Collectors.toSet());
+
+        for (Map.Entry<String,Set<String>> entry: filteredSortedMap.entrySet()) {
+
+            System.out.println("Key :"+entry.getKey()+"  Value Set :"+entry.getValue().stream().findFirst().orElse("Empty"));
+
+        }
     }
 }
