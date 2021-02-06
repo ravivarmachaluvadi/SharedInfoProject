@@ -1,12 +1,13 @@
 package com.example.nodb.impinfo.SharedInfoProject.mian;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MainMethodClass {
 
     public static void main(String[] args) {
+
+        Map<String, Set<String>> lineKeyStatusSetMap=new HashMap<>();
 
         StatusDTO sstatusDTO1=new StatusDTO();
         sstatusDTO1.setQuantity(1);
@@ -83,6 +84,25 @@ public class MainMethodClass {
 
         System.out.println(filteredStatusCodes);
 
+        List<String> sortedList=orderList.stream().flatMap(order -> order.getOrderLines().stream().flatMap(orderLine -> orderLine.getStatusDTOS().stream().map(statusDTO -> statusDTO.getStatusCode()))).collect(Collectors.toList()).stream().sorted().collect(Collectors.toList());
+
+        System.out.println(sortedList);
+
+        String maxStatus=orderList.stream().flatMap(order -> order.getOrderLines().stream().flatMap(orderLine -> orderLine.getStatusDTOS().stream().map(statusDTO -> statusDTO.getStatusCode()))).collect(Collectors.toList()).stream().max(String::compareTo).get();
+
+        System.out.println(maxStatus);
+
+        String misStatus=orderList.stream().flatMap(order -> order.getOrderLines().stream().flatMap(orderLine -> orderLine.getStatusDTOS().stream().map(statusDTO -> statusDTO.getStatusCode()))).collect(Collectors.toList()).stream().min(String::compareTo).get();
+
+        System.out.println(misStatus);
+
+        orderList.stream().flatMap(order -> order.getOrderLines().stream().map(orderLine -> lineKeyStatusSetMap.put(orderLine.orderLineKey,orderLine.getStatusDTOS().stream().map(statusDTO -> statusDTO.getStatusDescription()).collect(Collectors.toSet())))).collect(Collectors.toSet());
+
+        for (Map.Entry<String,Set<String>> entry: lineKeyStatusSetMap.entrySet()) {
+
+            System.out.println("Key :"+entry.getKey()+"  Value Set :"+entry.getValue());
+
+        }
 
     }
 }
