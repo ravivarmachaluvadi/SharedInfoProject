@@ -38,35 +38,74 @@ public class MainMethodClass {
         sstatusDTO3.setStatusCode("3700.003");
         sstatusDTO3.setStatusDescription("Shipped And Invoiced");
 
+        StatusDTO sstatusDTO4 =new StatusDTO();
+        sstatusDTO4.setQuantity(1);
+        sstatusDTO4.setStatusCode("3700.01");
+        sstatusDTO4.setStatusDescription("Return Initiated");
+
         OrderLine sLine2=new OrderLine();
         sLine2.setLineNumber("2");
         sLine2.setOrderLineKey("22");
         sLine2.getStatusDTOS().add(sstatusDTO2);
         sLine2.getStatusDTOS().add(sstatusDTO3);
+        sLine2.getStatusDTOS().add(sstatusDTO4);
 
         Order saleOrder2=new Order();
-        saleOrder2.setOmsOrderKey("101");
-        saleOrder2.setOrderNumber("1");
+        saleOrder2.setOmsOrderKey("202");
+        saleOrder2.setOrderNumber("2");
         saleOrder2.setOrderType("Sales");
         saleOrder2.getOrderLines().add(sLine2);
 
 
-        OrderLine sLine3=new OrderLine();
+        StatusDTO rStatusDTO1=new StatusDTO();
+        rStatusDTO1.setQuantity(1);
+        rStatusDTO1.setStatusCode("3700.05");
+        rStatusDTO1.setStatusDescription("Return Approved");
 
-        Order returnOrder1=new Order();
+        StatusDTO rStatusDTO2=new StatusDTO();
+        rStatusDTO2.setQuantity(1);
+        rStatusDTO2.setStatusCode("3700.003");
+        rStatusDTO2.setStatusDescription("Shipped And Invoiced");
+
+        StatusDTO rStatusDTO3=new StatusDTO();
+        rStatusDTO3.setQuantity(1);
+        rStatusDTO3.setStatusCode("3700.01");
+        rStatusDTO3.setStatusDescription("Return Initiated");
 
         OrderLine rLine1=new OrderLine();
-        OrderLine rLine2=new OrderLine();
-        OrderLine rLine3=new OrderLine();
+        rLine1.setLineNumber("3");
+        rLine1.setOrderLineKey("33");
+        rLine1.getStatusDTOS().add(rStatusDTO1);
 
-        StatusDTO rStatusDTO1=new StatusDTO();
-        StatusDTO rStatusDTO2=new StatusDTO();
-        StatusDTO rStatusDTO3=new StatusDTO();
+
+        OrderLine rLine2=new OrderLine();
+        rLine2.setLineNumber("4");
+        rLine2.setOrderLineKey("44");
+        rLine2.getStatusDTOS().add(rStatusDTO2);
+
+
+        OrderLine rLine3=new OrderLine();
+        rLine3.setLineNumber("5");
+        rLine3.setOrderLineKey("55");
+        rLine3.getStatusDTOS().add(rStatusDTO3);
+
+
+        Order returnOrder1=new Order();
+        returnOrder1.setOmsOrderKey("303");
+        returnOrder1.setOrderNumber("3");
+        returnOrder1.setOrderType("Sales");
+        returnOrder1.getOrderLines().add(rLine1);
+        returnOrder1.getOrderLines().add(rLine2);
+        //returnOrder1.getOrderLines().add(rLine3);
+        returnOrder1.getOrderLines().add(rLine3);
+
+
 
         List<Order> orderList=new ArrayList<>();
 
         orderList.add(saleOrder1);
         orderList.add(saleOrder2);
+        orderList.add(returnOrder1);
 
 
         List<String> statusList=orderList.stream().flatMap(order -> order.getOrderLines().stream().flatMap(orderLine -> orderLine.getStatusDTOS().stream().map(statusDTO -> statusDTO.getStatusCode()))).collect(Collectors.toList());
@@ -113,5 +152,13 @@ public class MainMethodClass {
             System.out.println("Key :"+entry.getKey()+"  Value Set :"+entry.getValue().stream().findFirst().orElse("Empty"));
 
         }
+
+        orderList.stream().forEach(order -> order.getOrderLines().stream().filter(orderLine -> orderLine.getStatusDTOS().stream().anyMatch(statusDTO -> statusDTO.getStatusCode().equalsIgnoreCase("3700.01"))).forEach(orderLine -> System.out.println(orderLine.orderLineKey)));
+
+        orderList.stream().filter(order -> order.getOrderLines().stream().filter(orderLine -> orderLine.getStatusDTOS().stream().anyMatch(statusDTO -> statusDTO.getStatusCode().equalsIgnoreCase("3700.01"))).findFirst().isPresent()).forEach(order -> System.out.println(order.orderNumber));
+        //Both ARE SAME
+        orderList.stream().filter(order -> order.getOrderLines().stream().anyMatch(orderLine -> orderLine.getStatusDTOS().stream().anyMatch(statusDTO -> statusDTO.getStatusCode().equalsIgnoreCase("3700.01")))).forEach(order -> System.out.println(order.orderNumber));
+
+
     }
 }
