@@ -1,5 +1,6 @@
 package com.example.nodb.impinfo.SharedInfoProject;
 
+import com.example.nodb.impinfo.SharedInfoProject.guru.Child;
 import com.example.nodb.impinfo.SharedInfoProject.guru.Parent;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class JsonDTOTest {
 
@@ -33,8 +35,16 @@ public class JsonDTOTest {
                     stringListMap.put(parent1.getField(), parent1);
                 }
             });
-            stringListMap.forEach((s, children) -> System.out.println(s+" "+children));
 
+            //sorting children
+            stringListMap.forEach((s, parent1) -> {
+                List<Child> children=parent1.getChild().stream().sorted((o1, o2) -> o1.getId().compareTo(o2.getId())).collect(Collectors.toList());
+                parent1.setChild(children);
+                stringListMap.put(s,parent1);
+            });
+
+
+            stringListMap.forEach((s, children) -> System.out.println(s+" "+children));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
