@@ -9,10 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class JsonDTOTest {
@@ -39,7 +36,8 @@ public class JsonDTOTest {
             //sorting children
             stringListMap.forEach((s, parent1) -> {
                 List<Child> children=parent1.getChild().stream().sorted((o1, o2) -> o1.getId().compareTo(o2.getId())).collect(Collectors.toList());
-                parent1.setChild(children);
+                Set set = new LinkedHashSet(children);
+                parent1.setChild(set);
                 stringListMap.put(s,parent1);
             });
 

@@ -1,6 +1,8 @@
 package com.example.nodb.impinfo.SharedInfoProject.guru;
 
 import java.util.List;
+import java.util.Set;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class Parent {
@@ -17,7 +19,7 @@ public class Parent {
     private String header;
     @SerializedName("child")
     @Expose
-    private List<Child> child = null;
+    private Set<Child> child = null;
     @SerializedName("values")
     @Expose
     private List<Object> values = null;
@@ -46,11 +48,11 @@ public class Parent {
         this.header = header;
     }
 
-    public List<Child> getChild() {
+    public Set<Child> getChild() {
         return child;
     }
 
-    public void setChild(List<Child> child) {
+    public void setChild(Set<Child> child) {
         this.child = child;
     }
 
