@@ -1,0 +1,36 @@
+[
+  {
+    "id": 810,
+    "field": "siteName",
+    "header": "Site",
+    "child": []
+  },
+  {
+    "id": 905,
+    "filed": "totalPorts",
+    "header": "Total Ports",
+    "values": [],
+    "child": [
+      {
+        "id": 1000,
+        "PresentHeaderName": "Total Ports",
+        "field": "totalPortsLr4HundredGXRS",
+        "header": "100 GE LR4"
+      }
+    ]
+  },
+  {
+    "id": 815,
+    "fields": "totalPorts",
+    "header": "Total Ports",
+    "values": [],
+    "child": [
+      {
+        "id": 728,
+        "ParentHeaderName": "Total ports",
+        "filed": "totalPortsDdsr4HundredG",
+        "header": "QSFP 100 GE DD-SR$"
+      }
+    ]
+  }
+]
