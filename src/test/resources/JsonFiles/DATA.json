@@ -7,7 +7,7 @@
   },
   {
     "id": 905,
-    "filed": "totalPorts",
+    "field": "totalPorts",
     "header": "Total Ports",
     "values": [],
     "child": [
@@ -21,16 +21,22 @@
   },
   {
     "id": 815,
-    "fields": "totalPorts",
+    "field": "totalPorts",
     "header": "Total Ports",
     "values": [],
     "child": [
       {
         "id": 728,
         "ParentHeaderName": "Total ports",
-        "filed": "totalPortsDdsr4HundredG",
+        "field": "totalPortsDdsr4HundredG",
         "header": "QSFP 100 GE DD-SR$"
       }
     ]
+  },
+  {
+    "id": 811,
+    "field": "siteName",
+    "header": "Site",
+    "child": []
   }
 ]

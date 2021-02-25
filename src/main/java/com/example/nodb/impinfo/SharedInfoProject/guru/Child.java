@@ -5,71 +5,71 @@ import com.google.gson.annotations.SerializedName;
 
 public class Child {
 
-@SerializedName("id")
-@Expose
-private Integer id;
-@SerializedName("PresentHeaderName")
-@Expose
-private String presentHeaderName;
-@SerializedName("field")
-@Expose
-private String field;
-@SerializedName("header")
-@Expose
-private String header;
-@SerializedName("ParentHeaderName")
-@Expose
-private String parentHeaderName;
-@SerializedName("filed")
-@Expose
-private String filed;
 
-public Integer getId() {
-return id;
-}
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("PresentHeaderName")
+    @Expose
+    private String presentHeaderName;
+    @SerializedName("field")
+    @Expose
+    private String field;
+    @SerializedName("header")
+    @Expose
+    private String header;
+    @SerializedName("ParentHeaderName")
+    @Expose
+    private String parentHeaderName;
 
-public void setId(Integer id) {
-this.id = id;
-}
+    public Integer getId() {
+        return id;
+    }
 
-public String getPresentHeaderName() {
-return presentHeaderName;
-}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-public void setPresentHeaderName(String presentHeaderName) {
-this.presentHeaderName = presentHeaderName;
-}
+    public String getPresentHeaderName() {
+        return presentHeaderName;
+    }
 
-public String getField() {
-return field;
-}
+    public void setPresentHeaderName(String presentHeaderName) {
+        this.presentHeaderName = presentHeaderName;
+    }
 
-public void setField(String field) {
-this.field = field;
-}
+    public String getField() {
+        return field;
+    }
 
-public String getHeader() {
-return header;
-}
+    public void setField(String field) {
+        this.field = field;
+    }
 
-public void setHeader(String header) {
-this.header = header;
-}
+    public String getHeader() {
+        return header;
+    }
 
-public String getParentHeaderName() {
-return parentHeaderName;
-}
+    public void setHeader(String header) {
+        this.header = header;
+    }
 
-public void setParentHeaderName(String parentHeaderName) {
-this.parentHeaderName = parentHeaderName;
-}
+    public String getParentHeaderName() {
+        return parentHeaderName;
+    }
 
-public String getFiled() {
-return filed;
-}
+    public void setParentHeaderName(String parentHeaderName) {
+        this.parentHeaderName = parentHeaderName;
+    }
 
-public void setFiled(String filed) {
-this.filed = filed;
-}
-
+    @Override
+    public String toString() {
+        return "Child{" +
+                "id=" + id +
+                ", presentHeaderName='" + presentHeaderName + '\'' +
+                ", field='" + field + '\'' +
+                ", header='" + header + '\'' +
+                ", parentHeaderName='" + parentHeaderName + '\'' +
+                '}';
+    }
 }
