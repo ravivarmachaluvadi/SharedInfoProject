@@ -16,6 +16,12 @@
         "PresentHeaderName": "Total Ports",
         "field": "totalPortsLr4HundredGXRS",
         "header": "100 GE LR4"
+      },
+      {
+        "id": 1001,
+        "PresentHeaderName": "Total Ports",
+        "field": "totalPortsLr4HundredGXRS",
+        "header": "100 GE LR4"
       }
     ]
   },
